@@ -6,33 +6,10 @@ using System.Threading.Tasks;
 
 namespace QuantityMeasurementApp
 {
-    public class Inch
+    public class Inch : Quantity
     {
-        private readonly double _value;
-
-        public Inch(double value)
+        public Inch(double value) : base(value)
         {
-            _value = value;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(this, obj))
-                return true;
-
-            if (obj is null)
-                return false;
-
-            if (obj.GetType() != typeof(Inch))
-                return false;
-
-            var other = (Inch)obj;
-            return _value.Equals(other._value);
-        }
-
-        public override int GetHashCode()
-        {
-            return _value.GetHashCode();
         }
     }
 }
