@@ -8,7 +8,8 @@ namespace QuantityMeasurementApp
 {
     public class Inch : Quantity
     {
-        public Inch(double value) : base(value, Unit.Inch)
+        public Inch(double value)
+            : base(value, Unit.Inch, QuantityType.Length)
         {
         }
     }

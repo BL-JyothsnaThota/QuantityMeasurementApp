@@ -10,11 +10,13 @@ namespace QuantityMeasurementApp
     {
         protected readonly double Value;
         protected readonly Unit Unit;
+        protected readonly QuantityType QuantityType;
 
-        protected Quantity(double value, Unit unit)
+        protected Quantity(double value, Unit unit, QuantityType quantityType)
         {
             Value = value;
             Unit = unit;
+            QuantityType = quantityType;
         }
 
         private double ConvertToBaseUnit()
@@ -38,12 +40,16 @@ namespace QuantityMeasurementApp
             if (obj is not Quantity other)
                 return false;
 
+            // 🔒 UC5 core rule
+            if (this.QuantityType != other.QuantityType)
+                return false;
+
             return ConvertToBaseUnit().Equals(other.ConvertToBaseUnit());
         }
 
         public override int GetHashCode()
         {
-            return ConvertToBaseUnit().GetHashCode();
+            return HashCode.Combine(ConvertToBaseUnit(), QuantityType);
         }
     }
 }

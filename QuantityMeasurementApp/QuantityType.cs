@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace QuantityMeasurementApp
 {
-    public class Feet : Quantity
+   
+    public enum QuantityType
     {
-        public Feet(double value)
-            : base(value, Unit.Feet, QuantityType.Length)
-        {
-        }
+        Length,
+        Volume
     }
 }
