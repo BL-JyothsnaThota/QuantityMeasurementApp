@@ -25,6 +25,9 @@ namespace QuantityMeasurementApp
             {
                 Unit.Feet => Value * 12,
                 Unit.Inch => Value,
+                Unit.Yard => Value * 36,
+                Unit.Centimeter => Value * 0.393701,
+
                 _ => throw new InvalidOperationException("Unknown unit")
             };
         }

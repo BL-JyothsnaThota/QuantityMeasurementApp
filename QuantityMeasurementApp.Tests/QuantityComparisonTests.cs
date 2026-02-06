@@ -34,5 +34,18 @@ namespace QuantityMeasurementApp.Tests
 
             Assert.False(feet.Equals(inch));
         }
+
+        
+        [Fact]
+        public void Given1YardAnd3Feet_WhenCompared_ShouldReturnTrue()
+        {
+            Assert.True(new Yard(1).Equals(new Feet(3)));
+        }
+
+        [Fact]
+        public void Given2FeetAnd60Centimeter_WhenCompared_ShouldReturnFalse()
+        {
+            Assert.False(new Feet(2).Equals(new Centimeter(60)));
+        }
     }
 }

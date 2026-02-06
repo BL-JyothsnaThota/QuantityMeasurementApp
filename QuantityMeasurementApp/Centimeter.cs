@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuantityMeasurementApp
 {
-    public enum Unit
+    public class Centimeter : Quantity
     {
-        Feet,
-        Inch,
-        Yard,
-        Centimeter
+        public Centimeter(double value)
+            : base(value, Unit.Centimeter, QuantityType.Length)
+        {
+        }
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace QuantityMeasurementApp
 {
-    public enum Unit
+    public class Yard : Quantity
     {
-        Feet,
-        Inch,
-        Yard,
-        Centimeter
+        public Yard(double value)
+            : base(value, Unit.Yard, QuantityType.Length)
+        {
+        }
     }
 }
