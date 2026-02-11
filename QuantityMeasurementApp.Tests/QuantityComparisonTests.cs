@@ -47,5 +47,8 @@ namespace QuantityMeasurementApp.Tests
         {
             Assert.False(new Feet(2).Equals(new Centimeter(60)));
         }
+
+
+
     }
 }
