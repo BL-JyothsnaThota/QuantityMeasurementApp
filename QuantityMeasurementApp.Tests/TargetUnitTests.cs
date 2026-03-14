@@ -3,11 +3,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace QuantityMeasurementApp.Tests
 {
     public class TargetUnitTests
     {
+        [Fact]
+        public void Given2Point55FeetAnd2Point44Feet_WhenAdded_TargetFeet_ShouldReturn4Point99Feet()
+        {
+            var result = Quantity.Add(new Feet(2.55), new Feet(2.44), Unit.Feet);
+            Assert.False(result.Equals(new Feet(5)));
+        }
+
+        [Theory]
+        [InlineData(2,2,2.001)]
+        [InlineData(1.1,2.1,3.201)]
+        public void GivenFeetAndFeet_WhenAdded_TargetFeet_ShouldReturnFalse(double a,double b,double c)
+        {
+            var result = Quantity.Add(new Feet(a), new Feet(b), Unit.Feet);
+            Assert.False(result.Equals(new Feet(c)));
+        }
+        // 1. Define the data source
+        public static IEnumerable<object[]> GetNullData()
+        {
+            yield return new object[] { null, new Feet(3), Unit.Feet };
+            yield return new object[] { new Feet(4), null, Unit.Yard };
+        }
+
+        // 2. Point the test to the data source
+        [Theory]
+        [MemberData(nameof(GetNullData))]
+        public void GivenNullQuantity_WhenAdded_ShouldThrowArgumentNullException(Quantity q1, Quantity q2, Unit targetUnit)
+        {
+            // Now you can use the objects directly!
+            Assert.Throws<ArgumentNullException>(() =>
+                Quantity.Add(q1, q2, targetUnit)
+            );
+        }
+
+        [Fact]
+        public void GivenOtherTargetUnit_WhenAdded_ShouldThrowArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            Quantity.Add(new Feet(4), new Feet(5), (Unit)999));
+        }
         [Fact]
         public void Given5FeetAnd2Feet_WhenAdded_TargetFeet_ShouldReturn7Feet()
         {
