@@ -18,7 +18,7 @@ namespace QuantityMeasurementApp.Tests
 
         [Theory]
         [InlineData(2,2,2.001)]
-        [InlineData(1.1,2.1,3.201)]
+        [InlineData(1.1,2.1,3.201)] 
         public void GivenFeetAndFeet_WhenAdded_TargetFeet_ShouldReturnFalse(double a,double b,double c)
         {
             var result = Quantity.Add(new Feet(a), new Feet(b), Unit.Feet);
